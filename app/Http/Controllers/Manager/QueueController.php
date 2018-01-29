@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Manager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Job;
-use App\Status;
+use App\JobStatus;
 
 class QueueController extends Controller
 {
-    public function addQueue($id){
+    public function add($id){
 
         $jobStatus = Job::find($id)->status;
         $jobStatus->status = "Đang đợi";
@@ -18,7 +18,7 @@ class QueueController extends Controller
         return redirect()->back();
     }
 
-    public function prioritizeQueue($id){
+    public function prioritize($id){
 
         $jobStatus = Job::find($id)->status;
         $jobStatus->status = "Ưu tiên";
@@ -26,5 +26,14 @@ class QueueController extends Controller
         
         return redirect()->back();
 
+    }
+
+    public function finish($id){
+
+        $jobStatus = Job::find($id)->status;
+        $jobStatus->status = "Bàn giao";
+        $jobStatus->save();
+
+        return redirect()->back();
     }
 }

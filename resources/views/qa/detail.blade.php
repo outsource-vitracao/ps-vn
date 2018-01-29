@@ -1,4 +1,4 @@
-@extends('manager.layout.master')
+@extends('qa.layout.master')
 
 @section('content')
 <div class="row">
@@ -10,15 +10,7 @@
                     <span class="caption-subject font-purple-soft bold uppercase">Thông tin chi tiết Job</span>
                 </div>
                 <div class="actions">
-                    @if($job->status->status == "Chờ")
-                    <a href="{{route('manager-add-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Thêm vào hàng đợi</a>
-                    @endif
-                    @if($job->status->status == "Đang đợi")
-                    <a href="{{route('manager-prioritize-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Ưu tiên</a>
-                    @endif
-                    @if($job->order == NULL)
-                    <a href="{{route('manager-create-order',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Thêm order</a>
-                    @endif
+                    <a href="{{route('qa-finish-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Kiểm tra xong</a>
                 </div>
             </div>
             <div class="portlet-body">
@@ -46,9 +38,6 @@
                                             Tên Job: {{$job->name}}
                                         </li>
                                         <li class="mt-list-item">
-                                            Tên khách hàng: {{$job->client}}
-                                        </li>
-                                        <li class="mt-list-item">
                                             Số lượng ảnh: {{$job->total}}
                                         </li>
                                         <li class="mt-list-item">
@@ -62,14 +51,6 @@
                                         </li>
                                         <li class="mt-list-item">
                                             Chú thích: {{$job->note}}
-                                        </li>
-                                        <li class="mt-list-item">
-
-                                            <a href="{{route('manager-delete-job',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Xóa </a>
-                                            <a href="{{route('manager-edit-job',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Sửa </a>
-                                            @if($job->status->status == "Kiểm tra xong")
-                                            <a href="" class="btn btn-outline btn-circle dark btn-sm black">Up</a>
-                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -91,10 +72,6 @@
                                         </li>
                                         <li class="mt-list-item">
                                             Ghi chú: {{$job->order->note}}
-                                        </li>
-                                        <li class="mt-list-item">
-                                            <a href="{{route('manager-delete-order',$job->order->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Xóa Order</a>
-                                            <a href="{{route('manager-edit-order',$job->order->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Sửa Order</a>
                                         </li>
                                     </ul>
                                     @endif

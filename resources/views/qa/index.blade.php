@@ -1,4 +1,4 @@
-@extends('manager.layout.master')
+@extends('qa.layout.master')
 
 @section('content')
 
@@ -11,12 +11,8 @@
                     <i class="icon-bubble font-dark"></i>
                     <span class="caption-subject font-dark bold uppercase">Danh sách Job</span>
                 </div>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn dark btn-outline btn-circle btn-sm" href="{{route('manager-create-job')}}" >Tạo Job</a>
-                    </div>
-                </div>                
             </div>
+            @if(isset($jobs))
             <div class="portlet-body">
                 <div class="table-scrollable">
                     <table class="table table-bordered table-hover">
@@ -45,7 +41,7 @@
                                 </td>
                                 <td> <span class="label label-sm label-info">{{$job->status->status}}</span> </td>
                                 <td> 
-                                    <a href="{{route('manager-show-job',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Xem chi tiết</a>
+                                    <a href="{{route('qa-get-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Kiểm tra</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -53,9 +49,12 @@
                     </table>
                 </div>
             </div>
+            @else
+                <h4>Hiện tại chưa có job để kiểm tra</h4>
+            @endif
         </div>
         <!-- END BORDERED TABLE PORTLET-->
     </div>
-</div> 
+</div>  
 
 @stop

@@ -21,6 +21,9 @@ class Job extends Model
         return $this->hasOne('App\Order');
     }
 
+    public function comment(){
+        return $this->hasOne('App\Comment');
+    }
     public function status(){
         return $this->hasOne('App\JobStatus');
     }

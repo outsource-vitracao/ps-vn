@@ -77,12 +77,82 @@ Route::group([
         //Queue action
         Route::get('job/queue/add/{id}',[
             'as' => 'add-queue',
-            'uses' => 'QueueController@addQueue'
+            'uses' => 'QueueController@add'
         ]);
 
         Route::get('job/queue/prioritize/{id}',[
             'as' => 'prioritize-queue',
-            'uses' => 'QueueController@prioritizeQueue'
+            'uses' => 'QueueController@prioritize'
+        ]);
+
+        Route::get('job/queue/finish/{id}',[
+            'as' => 'finish-queue',
+            'uses' => 'QueueController@finish'
         ]);
         
+});
+
+Route::group([
+    'prefix' => 'editor',
+    'namespace' => 'Editor',
+    'as' => 'editor-'], function(){
+
+        //Job Action
+
+        Route::get('/',[
+            'as' => 'index',
+            'uses' => 'JobController@index'
+        ]);
+
+        Route::get('/job/show/{id}',[
+            'as' => 'show-job',
+            'uses' => 'JobController@show'
+        ]);
+
+        //Queue Action
+        Route::get('/queue/get',[
+            'as' => 'get-queue',
+            'uses' => 'QueueController@get'
+        ]);
+        
+        Route::get('/queue/finish/{id}',[
+            'as' => 'finish-queue',
+            'uses' => 'QueueController@finish'
+        ]);
+
+});
+
+Route::group([
+    'prefix' => 'qa',
+    'namespace' => 'QualityAssurance',
+    'as' => 'qa-'], function(){
+
+        //Job Action
+
+        Route::get('/',[
+            'as' => 'index',
+            'uses' => 'JobController@index'
+        ]);
+
+        Route::get('/checklist',[
+            'as' => 'checklist',
+            'uses' => 'JobController@checklist'
+        ]);
+
+        Route::get('/job/show/{id}',[
+            'as' => 'show-job',
+            'uses' => 'JobController@show'
+        ]);
+
+        //Queue Action
+        Route::get('/queue/get/{id}',[
+            'as' => 'get-queue',
+            'uses' => 'QueueController@get'
+        ]);
+        
+        Route::get('/queue/finish/{id}',[
+            'as' => 'finish-queue',
+            'uses' => 'QueueController@finish'
+        ]);
+
 });
