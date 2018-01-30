@@ -33,7 +33,7 @@ class QueueController extends Controller
     public function available(){
         $jobStatus = JobStatus::where('status','Ưu tiên')->first();
         if(!isset($jobStatus)){
-            $jobStatus = JobStatus::where('status','Chờ')->first();
+            $jobStatus = JobStatus::where('status','Đang đợi')->first();
         }
         return $jobStatus;
     }

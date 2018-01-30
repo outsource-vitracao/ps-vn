@@ -63,7 +63,11 @@ class JobController extends Controller
         return redirect()->route('manager-index');
     }
 
+    public function duplicate($id){
+        $job = Job::find($id);
 
+        return view('manager.duplicate-job',compact('job'));
+    }
 
 
 }

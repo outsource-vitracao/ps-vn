@@ -22,6 +22,7 @@
                     @if($job->order == NULL)
                     <a href="{{route('manager-create-order',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Thêm order</a>
                     @endif
+                    <a href="{{route('manager-duplicate-job',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Tạo Job tương tự</a>
                 </div>
             </div>
             <div class="portlet-body">
@@ -34,6 +35,9 @@
                         <a href="#tab_1_2" data-toggle="tab" aria-expanded="true"> Order kèm theo </a>
                     </li>
                     @endif
+                    <li class="">
+                        <a href="#tab_1_3" data-toggle="tab" aria-expanded="true">Bình luận </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="tab_1_1">
@@ -99,6 +103,46 @@
                                         </li>
                                     </ul>
                                     @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab_1_3">
+                        <div class="col-lg-12">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-red-sunglo">
+                                        <span class="caption-subject bold uppercase">Bình luận</span>
+                                    </div>
+                                </div>
+                                <div class="mt-element-list">
+                                    <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
+                                        @if(isset($job->comment))
+                                        <ul>
+                                            @foreach($job->comment->get() as $comment)
+                                            <li class="mt-list-item">
+                                                {{$comment->user}}: {{$comment->comment}}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <form role="form" action="{{route('manager-store-comment')}}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="job_id" value="{{$job->id}}" >
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label>Bình Luận:</label>
+                                                <textarea name="comment" class="form-control" rows="3"></textarea> 
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn blue">Bình luận</button>
+                                            <button type="reset" class="btn green">Reset</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

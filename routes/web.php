@@ -47,6 +47,11 @@ Route::group([
             'as' => 'update-job',
             'uses' => 'JobController@update'
         ]);
+
+        Route::get('job/duplicate/{id}',[
+            'as' => 'duplicate-job',
+            'uses' => 'JobController@duplicate',
+        ]);
         
         //Order action
         Route::get('/order/create/{job_id}',[ 
@@ -89,6 +94,12 @@ Route::group([
             'as' => 'finish-queue',
             'uses' => 'QueueController@finish'
         ]);
+
+        //Comment action
+        Route::post('/comment/store',[
+            'as' => 'store-comment',
+            'uses' => 'CommentController@store',
+        ]);
         
 });
 
@@ -118,6 +129,12 @@ Route::group([
         Route::get('/queue/finish/{id}',[
             'as' => 'finish-queue',
             'uses' => 'QueueController@finish'
+        ]);
+
+        //Comment action
+        Route::post('/comment/store',[
+            'as' => 'store-comment',
+            'uses' => 'CommentController@store',
         ]);
 
 });
@@ -153,6 +170,12 @@ Route::group([
         Route::get('/queue/finish/{id}',[
             'as' => 'finish-queue',
             'uses' => 'QueueController@finish'
+        ]);
+
+        //Comment action
+        Route::post('/comment/store',[
+            'as' => 'store-comment',
+            'uses' => 'CommentController@store',
         ]);
 
 });
