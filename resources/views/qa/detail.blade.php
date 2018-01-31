@@ -10,7 +10,10 @@
                     <span class="caption-subject font-purple-soft bold uppercase">Thông tin chi tiết Job</span>
                 </div>
                 <div class="actions">
+                    @if($job->status->status == "Đang kiểm tra")
                     <a href="{{route('qa-finish-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Kiểm tra xong</a>
+                    <a href="{{route('qa-back-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Trả về</a>
+                    @endif
                 </div>
             </div>
             <div class="portlet-body">
@@ -92,9 +95,9 @@
                                     </div>
                                     <div class="mt-element-list">
                                         <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
-                                            @if(isset($job->comment))
+                                            @if(count($job->comment) > 0)
                                             <ul>
-                                                @foreach($job->comment->get() as $comment)
+                                                @foreach($job->comment as $comment)
                                                 <li class="mt-list-item">
                                                     {{$comment->user}}: {{$comment->comment}}
                                                 </li>

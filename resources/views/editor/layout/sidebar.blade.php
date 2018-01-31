@@ -25,6 +25,11 @@
                     <span class="title">Job đang làm</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('editor-public-job')}}" class="nav-link">
+                    <span class="title">Job công khai</span>
+                </a>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
 

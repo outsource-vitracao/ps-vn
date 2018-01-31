@@ -41,7 +41,12 @@
                                 </td>
                                 <td> <span class="label label-sm label-info">{{$job->status->status}}</span> </td>
                                 <td> 
+                                    @if($job->status->status == "Đang kiểm tra" || $job->status->status == "Trả về Editor")
+                                    <a href="{{route('qa-show-job',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Chi tiết</a>
+                                    @endif
+                                    @if($job->status->status == "Hoàn thành edit")
                                     <a href="{{route('qa-get-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Kiểm tra</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

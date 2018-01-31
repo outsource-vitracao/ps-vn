@@ -29,7 +29,9 @@ class JobController extends Controller
     }
 
     public function checklist(){
-        $jobStatus = JobStatus::where('status','Đang kiểm tra')->get();
+        $jobStatus = JobStatus::where('status','Đang kiểm tra')
+                                ->orWhere('status','Trả về Editor')
+                                ->get();
 
         if($jobStatus->first() == NULL){
             return view('qa.index');

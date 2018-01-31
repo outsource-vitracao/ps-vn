@@ -20,9 +20,8 @@ class Job extends Model
     public function order(){
         return $this->hasOne('App\Order');
     }
-
     public function comment(){
-        return $this->hasOne('App\Comment');
+        return $this->hasMany('App\Comment');
     }
     public function status(){
         return $this->hasOne('App\JobStatus');

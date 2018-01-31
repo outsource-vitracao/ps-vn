@@ -21,6 +21,14 @@ class QueueController extends Controller
         return redirect()->route('editor-index');
     }
 
+    public function getPublic($id){
+        $jobStatus = JobStatus::where('job_id',$id)->first();
+        $jobStatus->status = "Đang edit";
+        $jobStatus->save();
+
+        return redirect()->route('editor-index');
+    }
+    
     public function finish($id){
         
         $jobStatus = JobStatus::where('job_id',$id)->first();
@@ -30,7 +38,25 @@ class QueueController extends Controller
         return redirect()->route('editor-index');
     }
 
-    public function available(){
+    public function back($id){
+
+        $jobStatus = JobStatus::where('job_id',$id)->first();
+        $jobStatus->status = "Trả về Manager";
+        $jobStatus->save();
+
+        return redirect()->route('editor-index');
+
+    }
+
+    public function return($id){
+        $jobStatus = JobStatus::where('job_id',$id)->first();
+        $jobStatus->status = "Đang kiểm tra";
+        $jobStatus->save();
+
+        return redirect()->route('editor-index');
+    }
+
+    protected function available(){
         $jobStatus = JobStatus::where('status','Ưu tiên')->first();
         if(!isset($jobStatus)){
             $jobStatus = JobStatus::where('status','Đang đợi')->first();

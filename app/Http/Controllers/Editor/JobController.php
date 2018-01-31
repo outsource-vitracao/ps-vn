@@ -13,7 +13,28 @@ class JobController extends Controller
     
     public function index(){
         
-        $jobStatus = JobStatus::where('status','Đang edit')->get();
+        $jobStatus = JobStatus::where('status','Đang edit')
+                                ->orWhere('status','Trả về Manager')
+                                ->orWhere('status','Trả về Editor')->get();
+
+        if($jobStatus->first() == NULL){
+            return view('editor.index');
+        }
+        
+        //Cho danh sách job_id 
+        $jobs_id = array();
+        foreach($jobStatus as $status){
+            $jobs_id[] = $status->job_id;
+        }
+        
+        $jobs = Job::find($jobs_id);
+        
+        return view('editor.index',compact('jobs'));
+    }
+
+    public function public(){
+        
+        $jobStatus = JobStatus::where('status','Công khai')->get();
 
         if($jobStatus->first() == NULL){
             return view('editor.index');

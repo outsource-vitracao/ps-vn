@@ -15,9 +15,13 @@
                     @endif
                     @if($job->status->status == "Đang đợi")
                     <a href="{{route('manager-prioritize-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Ưu tiên</a>
+                    <a href="{{route('manager-public-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Công khai</a>
                     @endif
                     @if($job->status->status == "Hoàn thành kiểm tra")
                         <a href="{{route('manager-finish-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Up</a>
+                    @endif
+                    @if($job->status->status == "Trả về Manager")
+                        <a href="{{route('manager-return-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Trả Job</a>
                     @endif
                     @if($job->order == NULL)
                     <a href="{{route('manager-create-order',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Thêm order</a>
@@ -117,9 +121,9 @@
                                 </div>
                                 <div class="mt-element-list">
                                     <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
-                                        @if(isset($job->comment))
+                                        @if(count($job->comment) > 0)
                                         <ul>
-                                            @foreach($job->comment->get() as $comment)
+                                            @foreach($job->comment as $comment)
                                             <li class="mt-list-item">
                                                 {{$comment->user}}: {{$comment->comment}}
                                             </li>

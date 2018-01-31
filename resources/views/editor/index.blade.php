@@ -13,7 +13,9 @@
                 </div>
                 <div class="actions">
                     <div class="btn-group">
+                        @if(request()->route()->getName() == "editor-index")
                         <a class="btn dark btn-outline btn-circle btn-sm" href="{{route('editor-get-queue')}}" > Nhận Job</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -46,7 +48,12 @@
                                 </td>
                                 <td> <span class="label label-sm label-info">{{$job->status->status}}</span> </td>
                                 <td> 
+                                    @if($job->status->status == "Đang edit" || $job->status->status == "Trả về Editor" || $job->status->status == "Trả về Manager")
                                     <a href="{{route('editor-show-job',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Xem chi tiết</a>
+                                    @endif
+                                    @if($job->status->status == "Công khai")
+                                    <a href="{{route('editor-getPublic-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Nhận Job công khai</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -55,7 +62,12 @@
                 </div>
             </div>
             @else
+                @if(request()->route()->getName() == "editor-index")
                 <h4>Bạn chưa nhận job nào</h4>
+                @else
+                <h4>Không có Job công khai
+                @endif
+
             @endif
         </div>
         <!-- END BORDERED TABLE PORTLET-->

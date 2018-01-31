@@ -25,15 +25,11 @@
                     <span class="title">Job cần kiểm tra</span>
                 </a>
             </li>
-            @if(isset($job))
-                @if($job->status->status == "Đang kiểm tra")
-                <li class="nav-item">
-                    <a href="{{route('qa-checklist')}}" class="nav-link">
-                        <span class="title">Job đang kiểm tra</span>
-                    </a>
-                </li>
-                @endif
-            @endif
+            <li class="nav-item">
+                <a href="{{route('qa-checklist')}}" class="nav-link">
+                    <span class="title">Job đang kiểm tra</span>
+                </a>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
 

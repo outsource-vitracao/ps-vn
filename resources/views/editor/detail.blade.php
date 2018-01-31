@@ -10,7 +10,13 @@
                     <span class="caption-subject font-purple-soft bold uppercase">Thông tin chi tiết Job</span>
                 </div>
                 <div class="actions">
+                    @if($job->status->status == "Đang edit")
                     <a href="{{route('editor-finish-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Hoàn thành</a>
+                    @endif
+                    <a href="{{route('editor-back-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Trả về</a>
+                    @if($job->status->status == "Trả về Editor")
+                    <a href="{{route('editor-return-queue',$job->id)}}" class="btn btn-outline btn-circle dark btn-sm black">Kiểm tra lại</a>
+                    @endif
                 </div>
             </div>
             <div class="portlet-body">
@@ -92,9 +98,9 @@
                                     </div>
                                     <div class="mt-element-list">
                                         <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
-                                            @if(isset($job->comment))
+                                            @if(count($job->comment) > 0)
                                             <ul>
-                                                @foreach($job->comment->get() as $comment)
+                                                @foreach($job->comment as $comment)
                                                 <li class="mt-list-item">
                                                     {{$comment->user}}: {{$comment->comment}}
                                                 </li>

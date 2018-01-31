@@ -28,6 +28,26 @@ class QueueController extends Controller
 
     }
 
+    public function public($id){
+
+        $jobStatus = Job::find($id)->status;
+        $jobStatus->status = "Công khai";
+        $jobStatus->save();
+        
+        return redirect()->back();
+
+    }
+
+
+    public function return($id){
+
+        $jobStatus = Job::find($id)->status;
+        $jobStatus->status = "Đang edit";
+        $jobStatus->save();
+        
+        return redirect()->back();
+    }
+
     public function finish($id){
 
         $jobStatus = Job::find($id)->status;

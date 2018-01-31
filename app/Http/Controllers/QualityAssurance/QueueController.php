@@ -19,6 +19,13 @@ class QueueController extends Controller
         return redirect()->route('qa-show-job',$id);
     }
 
+    public function back($id){
+        $jobStatus = JobStatus::where('job_id',$id)->first();
+        $jobStatus->status = "Trả về Editor";
+        $jobStatus->save();
+
+        return redirect()->route('qa-show-job',$id);
+    }
     public function finish($id){
 
         $jobStatus = JobStatus::where('job_id',$id)->first();
