@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Job;
+use App\Style;
 
 class OrderController extends Controller
 {   
 
     public function create($job_id){
-        return view('manager.create-order',compact('job_id'));
+        $styles = Style::all();
+        return view('manager.create-order',compact('job_id','styles'));
     }
 
     public function store(Request $request){
@@ -35,7 +37,8 @@ class OrderController extends Controller
     public function edit($id){
 
         $order = Order::find($id);
-        return view('manager.edit-order',compact('order'));
+        $styles = Style::all();
+        return view('manager.edit-order',compact('order','styles'));
 
     }
 

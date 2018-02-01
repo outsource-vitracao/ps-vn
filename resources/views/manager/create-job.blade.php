@@ -32,10 +32,11 @@
 
                         <div class="form-group">
                             <label>Style:</label>
-                            <select class="form-control" name="style">
-                                <option>SE and TV</option>
-                                <option>SE</option>
-                                <option>SE Extra</option>
+                            <select class="form-control select2" id="single" name="style_id" data-placeholder="Chọn Style">
+                                <option ></option>
+                                @foreach($styles as $style)
+                                <option value="{{$style->id}}">{{$style->name}}</option>
+                                @endforeach
                             </select>
                         </div>
 

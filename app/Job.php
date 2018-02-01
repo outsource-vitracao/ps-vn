@@ -12,11 +12,14 @@ class Job extends Model
         'name',
         'client',
         'total',
-        'style',
+        'style_id',
         'linkdownload',
         'note',
     ];
 
+    public function style(){
+        return $this->belongsTo('App\Style');
+    }
     public function order(){
         return $this->hasOne('App\Order');
     }

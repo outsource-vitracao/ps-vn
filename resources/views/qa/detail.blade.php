@@ -47,7 +47,7 @@
                                             Số lượng ảnh: {{$job->total}}
                                         </li>
                                         <li class="mt-list-item">
-                                            Style: {{$job->style}}
+                                            Style: {{$job->style->name}}
                                         </li>
                                         <li class="mt-list-item">
                                             Trạng thái: {{$job->status->status}}
@@ -71,7 +71,7 @@
                                     @if(isset($job->order->id))
                                     <ul>
                                         <li class="mt-list-item">
-                                            Style: {{$job->order->style}}
+                                            Style: {{$job->order->style->name}}
                                         </li>
                                         <li class="mt-list-item">
                                             Số lượng ảnh: {{$job->order->total}}

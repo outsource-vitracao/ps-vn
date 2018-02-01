@@ -18,7 +18,7 @@ class CreateJobsTable extends Migration
             $table->string('name');
             $table->string('client');
             $table->integer('total');
-            $table->string('style');
+            $table->unsignedBigInteger('style_id');
             $table->text('linkdownload');
             $table->longText('note')->nullable();
             $table->timestamps();

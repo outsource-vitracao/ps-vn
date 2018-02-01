@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('job_id');
             $table->integer('total');
-            $table->string('style');
+            $table->unsignedBigInteger('style_id');;
             $table->text('note')->nullable();
             $table->timestamps();
         });

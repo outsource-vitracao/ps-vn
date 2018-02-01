@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\JobStatus;
 use App\Order;
-
+use App\Style;
 class JobController extends Controller
 {
     public function index(){
@@ -16,7 +16,8 @@ class JobController extends Controller
     }
 
     public function create(){
-        return view('manager.create-job');
+        $styles = Style::all();
+        return view('manager.create-job',compact('styles'));
     }
 
     public function store(Request $request){
@@ -42,8 +43,8 @@ class JobController extends Controller
     public function edit($id){
          
         $job = Job::find($id);
-
-        return view('manager.edit-job',compact('job'));
+        $styles = Style::all();
+        return view('manager.edit-job',compact('job','styles'));
     }
 
     public function update(Request $request){
@@ -65,8 +66,8 @@ class JobController extends Controller
 
     public function duplicate($id){
         $job = Job::find($id);
-
-        return view('manager.duplicate-job',compact('job'));
+        $styles = Style::all();
+        return view('manager.duplicate-job',compact('job','styles'));
     }
 
 

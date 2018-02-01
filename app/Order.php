@@ -10,7 +10,7 @@ class Order extends Model
 
     protected $fillable = [
         'job_id',
-        'style',
+        'style_id',
         'total',
         'note'
     ];
@@ -19,6 +19,6 @@ class Order extends Model
     }
 
     public function style(){
-        return $this->hasOne('App\Style');
+        return $this->belongSTo('App\Style');
     }
 }
