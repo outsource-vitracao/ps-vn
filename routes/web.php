@@ -110,6 +110,40 @@ Route::group([
             'as' => 'store-comment',
             'uses' => 'CommentController@store',
         ]);
+
+        //Client action
+        Route::get('/client',[
+            'as' => 'list-client',
+            'uses' => 'ClientController@index'
+        ]);
+        Route::get('/client/create',[
+            'as' => 'create-client',
+            'uses' => 'ClientController@create',
+        ]);
+        Route::post('/client/store',[
+            'as' => 'store-client',
+            'uses' => 'ClientController@store'
+        ]);
+        Route::get('/client/show/{id}',[
+            'as' => 'show-client',
+            'uses' => 'ClientController@show'
+        ]);
+
+        Route::get('/client/delete/{id}',[
+            'as' => 'delete-client',
+            'uses' => 'ClientController@destroy'
+        ]);
+
+        Route::get('client/edit/{id}',[
+            'as' => 'edit-client',
+            'uses' => 'ClientController@edit'
+        ]);
+
+        Route::post('client/update',[
+            'as' => 'update-client',
+            'uses' => 'ClientController@update'
+        ]);
+        
         
 });
 
